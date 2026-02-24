@@ -23,9 +23,8 @@ class Deck{
     }
 
     getDeck() {
-        for (i in this.#deck) {
-            console.log(i);
-            
+        for (let i in this.#deck) {
+            console.log(this.#deck[i]);  
         }
     }
     
@@ -33,8 +32,3 @@ class Deck{
         return; //TODO: Сделать метод пермешивания колоды
     }
 }
-
-test = new Deck();
-
-test.getDeck;
-
