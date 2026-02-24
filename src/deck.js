@@ -29,6 +29,11 @@ class Deck{
     }
     
     shuffle() {
-        return; //TODO: Сделать метод пермешивания колоды
+        for (let i in this.#deck){
+            let j = Math.floor(Math.random() * (i));
+            var b = this.#deck[i];
+            this.#deck[i] = this.#deck[j];
+            this.#deck[j] = b;
+        }
     }
 }
