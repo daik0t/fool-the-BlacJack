@@ -1,4 +1,4 @@
-function instructions(){
+function Instructions(){
     return (
         <div>
             <main>
@@ -8,4 +8,4 @@ function instructions(){
     );
 }
 
-export default instructions;
+export default Instructions;

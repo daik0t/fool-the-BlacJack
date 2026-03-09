@@ -1,39 +1,57 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function play(){
+function Play(){
+    const navigate = useNavigate();
+    const HandleSubmit = (e) => {        
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);
+
+        const formJson = Object.fromEntries(formData.entries());
+        console.log(formJson);
+
+        const data = formJson;
+
+        navigate('../game', {state: {data}})
+      }
     return (
         <div>
-            <setup>
-                <table width="100%">
-                    <tr valign="top">
-                        <td >
-                            Сколько Игроков&nbsp;
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5 </option>
-                            </select>
-                        </td>
-                        <td >
-                            Сколько кололд&nbsp;
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5 </option>
-                            </select>
-                        </td> 
-                    </tr>
-                </table>
-            </setup>
+            <form method="post" onSubmit={HandleSubmit}>
+
+            <table width="100%">
+                <tbody>
+
+                <tr valign="top">
+                    <td >
+                        Сколько Игроков&nbsp;
+                        <select name="playerNum" defaultValue={1}>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5 </option>
+                        </select>
+                    </td>
+                    <td >
+                        Сколько кололд&nbsp;
+                        <select name="deckNum" defaultValue={1} >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5 </option>
+                        </select>
+                    </td> 
+                </tr>
+                </tbody>
+            </table>
             <main align="center">
-                <Link to="../game">Start Game</Link>
+                <button type="submit">Start Game</button>
             </main>
+            </form>
         </div>
     );
 }
 
-export default play;
+export default Play;

@@ -1,4 +1,4 @@
-function leaderboard(){
+function Leaderboard(){
     return (
         <div>
             <main>
@@ -8,4 +8,4 @@ function leaderboard(){
     );
 }
 
-export default leaderboard;
+export default Leaderboard;
