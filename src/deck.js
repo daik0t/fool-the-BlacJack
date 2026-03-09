@@ -81,7 +81,7 @@ class Card{
     
     getValue(){
         if (this.#rank >= "2" && this.#rank <= "6") this.#value = 1;
-        else if (this.#rank >= "7" && this.#rank <= 9) this.#value = 0;
+        else if (this.#rank >= "7" && this.#rank <= "9") this.#value = 0;
         else this.#value = -1;
         return this.#value;
     }
