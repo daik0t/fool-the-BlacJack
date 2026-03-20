@@ -14,6 +14,7 @@ function Game(){
     const [value, setValue] = useState(0);
     const [dealerCard, setDealerCard] = useState([]);
     const [text, setText] = useState(null)
+    const [lives, setLives] = useState(3)
     
     useEffect(() => {
         setText('начало')
@@ -79,10 +80,17 @@ function Game(){
         setDealerCard(newDealerCard)
         setCards(newCards);
         setValue(newValue);
+        
     }
 
     const checkScore = (score) => {
-        setText(score == value ? "ДА" : "НЕТ");
+        if (score == value) {
+            setText("ДА")
+        }
+        else {
+            setLives(lives - 1)
+            setText("НЕТ")
+        }
     }
 
     const toPlay = () =>{
@@ -100,6 +108,16 @@ function Game(){
 
     if (!deck || !dealerCard) return <div>Загрузка...</div>;
 
+    if (lives === 0) {
+        return (
+        <div>
+            <button onClick={toPlay}>Try Again</button>
+        </div>
+        );
+    }
+
+    console.log(value);
+    
     return (
         <div>
             <footer align="center">
@@ -111,7 +129,7 @@ function Game(){
                 
                 <div className="gameStats">
                     <button onClick={toPlay}>Back</button>
-                    Жизни: x
+                    Жизни: {lives}
                     Счёт: {value}
                     Проверка: {text}
                 </div>
