@@ -1,65 +1,125 @@
 import { useLocation } from "react-router-dom";
-import {Decks} from "./deck.js";
+import { Decks } from "./deck.js";
 import { useNavigate } from "react-router-dom";
 import { CardJoker } from "game-icons-react/dist/delapouite/CardJoker.js";
+import { useState, useEffect } from "react";
 
 function Game(){
     const location = useLocation();    
     const navigate = useNavigate();
-    var deck = new Decks(location.state.data.deckNum);
-    var playerNum = location.state.data.playerNum;
-    deck.shuffle();    
-    
-    var value = 0;
-    var dealerCard = deck.showCard();
-    value += dealerCard.getValue();
-    
-    var cards = [];
-    
-    for (let i = 0;i < playerNum * 2;i++){
-        var card = deck.showCard();
-        value += card.getValue();
-        if (i % 2 === 0){
-            cards.push(<svg width={125} height={125} viewBox="-3 0 24 24">
-                {card.getIcon()}
-            </svg>); 
-        } else {
-            cards.push(<svg width={125} height={125} viewBox="3 0 24 24">
-                {card.getIcon()}
-            </svg>); 
-        }
-    }
+    const { deckNum, playerNum } = location.state.data;
 
-    deck.showCard();
+    const [deck, setDeck] = useState(null);
+    const [cards, setCards] = useState([]);
+    const [value, setValue] = useState(0);
+    const [dealerCard, setDealerCard] = useState([]);
+    
+    useEffect(() => {
+        const newDeck = new Decks(deckNum);
+        newDeck.shuffle();
+        setDeck(newDeck);
+
+        let newValue = 0;
+
+        const initialDealerCards = [];
+        for (let i = 0; i < 2; i++){
+            const card = newDeck.showCard();
+            newValue += i % 2 === 0 ? card.getValue() : 0;
+            initialDealerCards.push(
+                <svg width={125} height={125} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
+                    {i % 2 === 0 ? card.getIcon() : <CardJoker/>}
+                </svg>
+            );
+        }
+
+        const initialCards = [];
+        for (let i = 0; i < playerNum * 2; i++) {
+            const card = newDeck.showCard();
+            newValue += card.getValue();
+            initialCards.push(
+                <svg width={125} height={125} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
+                    {card.getIcon()}
+                </svg>
+            );
+        }
+        newDeck.showCard();
+        setDealerCard(initialDealerCards)
+        setCards(initialCards);
+        setValue(newValue);
+    }, [deckNum, playerNum]);
+
+    const makeHands = () => {
+        if (!deck) return;
+        let newValue = value;
+
+        const newDealerCard = [];
+        for (let i = 0; i < 2; i++){
+            const card = deck.showCard();
+            newValue += i % 2 === 0 ? card.getValue() : 0;
+            newDealerCard.push(
+                <svg width={125} height={125} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
+                    {i % 2 === 0 ? card.getIcon() : <CardJoker/>}
+                </svg>
+            );
+        }
+
+        const newCards = [];
+        for (let i = 0; i < playerNum * 2; i++) {
+            const card = deck.showCard();
+            newValue += card.getValue();
+            newCards.push(
+                <svg width={125} height={125} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
+                    {card.getIcon()}
+                </svg>
+            );
+        }
+        setDealerCard(newDealerCard)
+        setCards(newCards);
+        setValue(newValue);
+    }
 
     const toPlay = () =>{
         navigate("../play");
     }
 
+    const HandleSubmit = (e) =>{    
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const formJson = Object.fromEntries(formData.entries());
+        makeHands();
+        console.log(formJson["score"]);
+    }
+
+    if (!deck || !dealerCard) return <div>Загрузка...</div>;
+
     return (
         <div>
             <footer align="center">
                 <h1>
-                    Fool the blackkack
+                    Fool the blackjack
                 </h1>
             </footer>
             <main>
+                
                 <div className="gameStats">
                     <button onClick={toPlay}>Back</button>
                     Жизни: x
                     Счёт: {value}
                 </div>
+                
                 <div className="dealer" align="center">
-                    <svg width={125} height={125} viewBox="-3 0 24 24">
-                        {dealerCard.getIcon()}    
-                    </svg>
-                    <svg width={125} height={125} viewBox="3 0 24 24">
-                        <CardJoker/>    
-                    </svg>
+                    {dealerCard}
                 </div>
+                
                 <div className="players" align="center">
                     {cards}
                 </div>
+
+                <form method="post" onSubmit={HandleSubmit} align="center">
+                        <input name="score" type="number" placeholder="Общий счет" />
+                        <button type="submit">Ok</button>
+                </form>
             </main>
         </div>
     );
