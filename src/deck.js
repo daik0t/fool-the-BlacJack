@@ -94,11 +94,12 @@ class Card{
 export class Decks{
     #suits = ["Spades", "Hearts", "Clubs", "Diamonds"];
     #ranks = [ "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-
+    #numberOfDecks
 
     #deck = [];
 
     constructor(numberOfDecks){
+        this.#numberOfDecks = numberOfDecks;
         for (let k = 0; k < numberOfDecks;k++) {
             for (let i = 0; i < this.#ranks.length; i++){
                 for (let j = 0;j < this.#suits.length; j++){

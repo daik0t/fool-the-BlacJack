@@ -88,15 +88,27 @@ function Game(){
         setDealerCard(initialDealerCards)
         setCards(initialCards);
         setValue(newValue);
+        
     }, [deckNum, playerNum]);
 
+    const getCard = () => {
+        var card = deck.showCard();
+        if (!card) {
+            const newDeck = new Decks(deckNum);
+            newDeck.shuffle();
+            card = newDeck.showCard();
+            setDeck(newDeck)
+        }
+        
+        return card;
+    }
+
     const makeHands = () => {
-        if (!deck) return;
         let newValue = value;
 
         const newDealerCard = [];
         for (let i = 0; i < 2; i++){
-            const card = deck.showCard();
+            const card = getCard();
             newValue += i % 2 === 0 ? card.getValue() : 0;
             newDealerCard.push(
                 <svg width={125} height={125} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
@@ -107,7 +119,7 @@ function Game(){
 
         const newCards = [];
         for (let i = 0; i < playerNum * 2; i++) {
-            const card = deck.showCard();
+            const card = getCard();
             newValue += card.getValue();
             newCards.push(
                 <svg width={125} height={125} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
@@ -202,9 +214,9 @@ function Game(){
                     {cards}
                 </div>
 
-                <form method="post" onSubmit={HandleSubmit} align="center">
+                <form method="post" onSubmit={HandleSubmit} onClick={null}align="center">
                         <input name="score" type="number" placeholder="Общий счет" />
-                        <button type="submit">Ok</button>
+                        <button type="submit"></button>
                 </form>
             </main>
         </div>
