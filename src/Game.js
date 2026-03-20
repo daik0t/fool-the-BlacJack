@@ -13,8 +13,11 @@ function Game(){
     const [cards, setCards] = useState([]);
     const [value, setValue] = useState(0);
     const [dealerCard, setDealerCard] = useState([]);
+    const [text, setText] = useState(null)
     
     useEffect(() => {
+        setText('начало')
+
         const newDeck = new Decks(deckNum);
         newDeck.shuffle();
         setDeck(newDeck);
@@ -78,6 +81,10 @@ function Game(){
         setValue(newValue);
     }
 
+    const checkScore = (score) => {
+        setText(score == value ? "ДА" : "НЕТ");
+    }
+
     const toPlay = () =>{
         navigate("../play");
     }
@@ -87,8 +94,8 @@ function Game(){
         const form = e.target;
         const formData = new FormData(form);
         const formJson = Object.fromEntries(formData.entries());
+        checkScore(formJson["score"]);
         makeHands();
-        console.log(formJson["score"]);
     }
 
     if (!deck || !dealerCard) return <div>Загрузка...</div>;
@@ -106,6 +113,7 @@ function Game(){
                     <button onClick={toPlay}>Back</button>
                     Жизни: x
                     Счёт: {value}
+                    Проверка: {text}
                 </div>
                 
                 <div className="dealer" align="center">
