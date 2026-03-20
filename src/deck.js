@@ -1,7 +1,7 @@
 import {Aussiesim} from "game-icons-react";
 import React from "react";
 
-var ICONS = {
+const ICONS = {
     "Spades2": <Aussiesim.Card2Spades/>,
     "Spades3": <Aussiesim.Card3Spades/>,
     "Spades4": <Aussiesim.Card4Spades/>,
@@ -121,7 +121,7 @@ export class Decks{
     shuffle() {
         for (let i in this.#deck){
             let j = Math.floor(Math.random() * (i));
-            var b = this.#deck[i];
+            let b = this.#deck[i];
             this.#deck[i] = this.#deck[j];
             this.#deck[j] = b;
         }
