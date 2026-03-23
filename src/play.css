@@ -1,0 +1,21 @@
+.inputs {
+    display:flex;
+    width: 100vw;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.inputs td{
+    margin-top: 30vh;
+    display: flex;
+    float: left;
+    width: 25vw;
+    justify-content: center;
+}
+
+.btn-start button{
+    margin-top: 50vh;
+    margin-left: 0vw;
+    height: 5vh;
+    width: 15vw;
+}

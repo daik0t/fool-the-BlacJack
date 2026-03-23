@@ -3,6 +3,7 @@ import { Decks } from "./deck.js";
 import { useNavigate } from "react-router-dom";
 import { CardJoker } from "game-icons-react/dist/delapouite/CardJoker.js";
 import { useState, useEffect } from "react";
+import "./game.css";
 
 const playerFactor = {
     1 : 1.0,
@@ -48,14 +49,12 @@ function Game(){
     const [cards, setCards] = useState([]);
     const [value, setValue] = useState(0);
     const [dealerCard, setDealerCard] = useState([]);
-    const [text, setText] = useState(null);
     const [lives, setLives] = useState(3);
     const [points, setPoints] = useState(0);
     const [startTime, setStart] = useState(Date.now());
     const [streak, setStreak] = useState(0)
     
     useEffect(() => {
-        setText('начало')
 
         const newDeck = new Decks(deckNum);
         newDeck.shuffle();
@@ -68,7 +67,7 @@ function Game(){
             const card = newDeck.showCard();
             newValue += i % 2 === 0 ? card.getValue() : 0;
             initialDealerCards.push(
-                <svg width={125} height={125} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
+                <svg className={i % 2 === 0 ? "right-card" : "left-card"} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
                     {i % 2 === 0 ? card.getIcon() : <CardJoker/>}
                 </svg>
             );
@@ -79,7 +78,7 @@ function Game(){
             const card = newDeck.showCard();
             newValue += card.getValue();
             initialCards.push(
-                <svg width={125} height={125} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
+                <svg className={i % 2 === 0 ? "right-card" : "left-card"} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
                     {card.getIcon()}
                 </svg>
             );
@@ -111,7 +110,7 @@ function Game(){
             const card = getCard();
             newValue += i % 2 === 0 ? card.getValue() : 0;
             newDealerCard.push(
-                <svg width={125} height={125} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
+                <svg className={i % 2 === 0 ? "right-card" : "left-card"} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
                     {i % 2 === 0 ? card.getIcon() : <CardJoker/>}
                 </svg>
             );
@@ -122,7 +121,7 @@ function Game(){
             const card = getCard();
             newValue += card.getValue();
             newCards.push(
-                <svg width={125} height={125} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
+                <svg className={i % 2 === 0 ? "right-card" : "left-card"} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
                     {card.getIcon()}
                 </svg>
             );
@@ -155,13 +154,11 @@ function Game(){
         setStart(Date.now())
         
         if (score == value) {
-            setText("ДА")
             setPoints(points + Math.ceil(basePoints * playerFactor[playerNum] * deckFactor[deckNum] * timeFactor[timePoints(timeElapsed)] * streakFactor[streakPoints(streak)]))
         }
         else {
             setLives(lives - 1)
             setStreak(0)
-            setText("НЕТ")
         }
     }
 
@@ -174,6 +171,7 @@ function Game(){
         const form = e.target;
         const formData = new FormData(form);
         const formJson = Object.fromEntries(formData.entries());
+        form.reset();
         checkScore(formJson["score"]);
         makeHands();
     }
@@ -182,7 +180,7 @@ function Game(){
 
     if (lives === 0) {
         return (
-        <div>
+        <div className="again">
             <button onClick={toPlay}>Try Again</button>
         </div>
         );
@@ -192,31 +190,28 @@ function Game(){
     
     return (
         <div>
-            <footer align="center">
-                <h1>
-                    Fool the blackjack
-                </h1>
-            </footer>
             <main>
-                
+                <button className="back-btn" onClick={toPlay}>Back</button>
                 <div className="gameStats">
-                    <button onClick={toPlay}>Back</button>
-                    Жизни: {lives}
+                    Жизни: {lives}&nbsp; 
                     Счёт: {points}
-                    Проверка: {text}
                 </div>
                 
-                <div className="dealer" align="center">
-                    {dealerCard}
-                </div>
-                
-                <div className="players" align="center">
-                    {cards}
+                <div className="game">
+
+                    <div className="dealer" align="center">
+                        {dealerCard}
+                    </div>
+                    
+                    <div className="players" align="center">
+                        {cards}
+                    </div>
+
                 </div>
 
-                <form method="post" onSubmit={HandleSubmit} onClick={null}align="center">
+                <form method="post" onSubmit={HandleSubmit} onClick={null} align="center">
                         <input name="score" type="number" placeholder="Общий счет" />
-                        <button type="submit"></button>
+                        <button type="submit">Ok</button>
                 </form>
             </main>
         </div>

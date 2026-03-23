@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import "./play.css";
+
 var defaultPlayers;
 var defaultDecks;
 
@@ -22,10 +24,10 @@ function Play(){
         <div>
             <form method="post" onSubmit={HandleSubmit}>
 
-                <table width="100%">
+                <table className="inputs">
                     <tbody>
-                        <tr valign="top">
-                            <td >
+                        <tr>
+                            <td>
                                 Сколько Игроков&nbsp;
                                 <select name="playerNum" defaultValue={defaultPlayers}>
                                     <option value="1">1</option>
@@ -49,7 +51,7 @@ function Play(){
                     </tbody>
                 </table>
 
-                <main align="center">
+                <main className="btn-start" align="center">
                     <button type="submit">Start Game</button>
                 </main>
 

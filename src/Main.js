@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./main.css";
 
 function Main(){
     const navigate = useNavigate();
@@ -17,12 +18,7 @@ function Main(){
     }
     
     return ( 
-    <div className="Main">
-        <header>
-            <h1>
-                Fool the Blacjack
-            </h1>
-        </header>
+    <div className="group-btn">
         <main>
             <ul type="None">
                 <li><button onClick={toPlay}>Play</button></li>
