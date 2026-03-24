@@ -9,6 +9,14 @@
     height: 80vh;
 }
 
+.dealer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    top: -10vh;
+}
+
 .again{
     display: flex;
     align-items: center;
@@ -24,16 +32,44 @@
 .back-btn {
     position: fixed;
     margin-top: -5vh;
-    margin-left: 93.5vw;
+    margin-left: 90vw;
 }
 
-.left-card {
+.card {
     width: 10vw;
     height: 25vh;
 }
 
-.right-card {
-    width: 10vw;
-    height: 25vh;
+#n0 {
+    position: fixed;
+    top: 65vh;
+    left: 40vw;
 }
 
+#n1 {
+    position: fixed;
+    top: 60vh;
+    left: 20vw;
+    transform: rotate(10deg);
+}
+
+#n2 {
+    position: fixed;
+    top: 60vh;
+    left: 60vw;
+    transform: rotate(-10deg);
+}
+
+#n3 {
+    position: fixed;
+    top: 50vh;
+    left: 2vw;
+    transform: rotate(30deg);
+}
+
+#n4 {
+    position: fixed;
+    top: 50vh;
+    left: 78vw;
+    transform: rotate(-30deg);
+}

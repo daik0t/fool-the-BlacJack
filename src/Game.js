@@ -67,20 +67,27 @@ function Game(){
             const card = newDeck.showCard();
             newValue += i % 2 === 0 ? card.getValue() : 0;
             initialDealerCards.push(
-                <svg className={i % 2 === 0 ? "right-card" : "left-card"} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
+                <svg className="card" viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
                     {i % 2 === 0 ? card.getIcon() : <CardJoker/>}
                 </svg>
             );
         }
 
         const initialCards = [];
-        for (let i = 0; i < playerNum * 2; i++) {
-            const card = newDeck.showCard();
-            newValue += card.getValue();
+        for (let i = 0; i < playerNum; i++) {
+            const leftCard = newDeck.showCard();
+            const rightCard = newDeck.showCard();
+            newValue += leftCard.getValue();
+            newValue += rightCard.getValue();
             initialCards.push(
-                <svg className={i % 2 === 0 ? "right-card" : "left-card"} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
-                    {card.getIcon()}
-                </svg>
+                <div id = {"n" + i}>
+                    <svg className="card" viewBox={"-3 0 24 24"}>
+                        {leftCard.getIcon()}
+                    </svg>
+                    <svg className="card" viewBox={"3 0 24 24"}>
+                        {rightCard.getIcon()}
+                    </svg>
+                </div>
             );
         }
         newDeck.showCard();
@@ -110,20 +117,27 @@ function Game(){
             const card = getCard();
             newValue += i % 2 === 0 ? card.getValue() : 0;
             newDealerCard.push(
-                <svg className={i % 2 === 0 ? "right-card" : "left-card"} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
+                <svg className="card" viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
                     {i % 2 === 0 ? card.getIcon() : <CardJoker/>}
                 </svg>
             );
         }
 
         const newCards = [];
-        for (let i = 0; i < playerNum * 2; i++) {
-            const card = getCard();
-            newValue += card.getValue();
+        for (let i = 0; i < playerNum; i++) {
+            const leftCard = getCard();
+            const rightCard = getCard();
+            newValue += leftCard.getValue();
+            newValue += rightCard.getValue();
             newCards.push(
-                <svg className={i % 2 === 0 ? "right-card" : "left-card"} viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
-                    {card.getIcon()}
-                </svg>
+                <div id = {"n" + i}>
+                    <svg className="card" viewBox={"-3 0 24 24"}>
+                        {leftCard.getIcon()}
+                    </svg>
+                    <svg className="card" viewBox={"3 0 24 24"}>
+                        {rightCard.getIcon()}
+                    </svg>
+                </div>
             );
         }
         setDealerCard(newDealerCard)
