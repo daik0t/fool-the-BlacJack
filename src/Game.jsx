@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
-import { Decks } from "./deck.js";
+import { Decks } from "./deck.jsx";
 import { useNavigate } from "react-router-dom";
-import { CardJoker } from "game-icons-react/dist/delapouite/CardJoker.js";
 import { useState, useEffect } from "react";
 import "./game.css";
 
@@ -63,14 +62,17 @@ function Game(){
         let newValue = 0;
 
         const initialDealerCards = [];
-        for (let i = 0; i < 2; i++){
+        for (let i = 0; i < 2; i++) {
             const card = newDeck.showCard();
             newValue += i % 2 === 0 ? card.getValue() : 0;
-            initialDealerCards.push(
-                <svg className="card" viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
-                    {i % 2 === 0 ? card.getIcon() : <CardJoker/>}
-                </svg>
-            );
+            if (i % 2 === 0) {
+                initialDealerCards.push(
+                    <div key={i} className="dealer-pair">
+                        <img src={card.getIcon()} alt="card" className="card dealer-left" />
+                        <img src="/src/cards/card-back.svg" alt="back" className="card dealer-right" />
+                    </div>
+                );
+            } 
         }
 
         const initialCards = [];
@@ -80,13 +82,9 @@ function Game(){
             newValue += leftCard.getValue();
             newValue += rightCard.getValue();
             initialCards.push(
-                <div id = {"n" + i}>
-                    <svg className="card" viewBox={"-3 0 24 24"}>
-                        {leftCard.getIcon()}
-                    </svg>
-                    <svg className="card" viewBox={"3 0 24 24"}>
-                        {rightCard.getIcon()}
-                    </svg>
+                <div key={i} id={`n${i}`} className="card-pair">
+                    <img src={leftCard.getIcon()} alt="card" className="card left-card" />
+                    <img src={rightCard.getIcon()} alt="card" className="card right-card" />
                 </div>
             );
         }
@@ -98,7 +96,7 @@ function Game(){
     }, [deckNum, playerNum]);
 
     const getCard = () => {
-        var card = deck.showCard();
+        let card = deck.showCard();
         if (!card) {
             const newDeck = new Decks(deckNum);
             newDeck.shuffle();
@@ -113,14 +111,17 @@ function Game(){
         let newValue = value;
 
         const newDealerCard = [];
-        for (let i = 0; i < 2; i++){
+        for (let i = 0; i < 2; i++) {
             const card = getCard();
             newValue += i % 2 === 0 ? card.getValue() : 0;
-            newDealerCard.push(
-                <svg className="card" viewBox={i % 2 === 0 ? "-3 0 24 24" : "3 0 24 24"}>
-                    {i % 2 === 0 ? card.getIcon() : <CardJoker/>}
-                </svg>
-            );
+            if (i % 2 === 0) {
+                newDealerCard.push(
+                    <div key={i} className="dealer-pair">
+                        <img src={card.getIcon()} alt="card" className="card dealer-left" />
+                        <img src="/src/cards/card-back.svg" alt="back" className="card dealer-right" />
+                    </div>
+                );
+            } 
         }
 
         const newCards = [];
@@ -130,13 +131,9 @@ function Game(){
             newValue += leftCard.getValue();
             newValue += rightCard.getValue();
             newCards.push(
-                <div id = {"n" + i}>
-                    <svg className="card" viewBox={"-3 0 24 24"}>
-                        {leftCard.getIcon()}
-                    </svg>
-                    <svg className="card" viewBox={"3 0 24 24"}>
-                        {rightCard.getIcon()}
-                    </svg>
+                <div key={i} id={`n${i}`} className="card-pair">
+                    <img src={leftCard.getIcon()} alt="card" className="card left-card" />
+                    <img src={rightCard.getIcon()} alt="card" className="card right-card" />
                 </div>
             );
         }

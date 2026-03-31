@@ -73,3 +73,45 @@
     left: 78vw;
     transform: rotate(-30deg);
 }
+
+/* Контейнер для пары карт игрока */
+.card-pair {
+    display: inline-block;
+    position: relative;
+    margin: 0 10px; /* отступы между парами */
+}
+
+.left-card {
+    position: relative;
+    left: 10px;   /* сдвиг вправо */
+    z-index: 1;
+}
+
+.right-card {
+    position: relative;
+    right: 10px;  /* сдвиг влево */
+    z-index: 0;
+}
+
+/* Контейнер для пары карт дилера */
+.dealer-pair {
+    display: inline-block;
+    position: relative;
+}
+
+.dealer-left {
+    position: relative;
+    left: 10px;
+    z-index: 1;
+}
+
+.dealer-right {
+    position: relative;
+    right: 10px;
+    z-index: 0;
+}
+
+.red-card {
+    /* Преобразует черный цвет в красный */
+    filter: brightness(0) saturate(100%) invert(14%) sepia(97%) saturate(5290%) hue-rotate(0deg) brightness(105%) contrast(107%);
+}
