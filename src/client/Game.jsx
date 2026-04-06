@@ -68,8 +68,8 @@ function Game(){
             if (i % 2 === 0) {
                 initialDealerCards.push(
                     <div key={i} className="dealer-pair">
-                        <img src={card.getIcon()} alt="card" className="card dealer-left" />
-                        <img src="/src/cards/card-back.svg" alt="back" className="card dealer-right" />
+                        <img src={card.getIcon()} alt={card.getIcon()} className="card dealer-left" />
+                        <img src="/src/client/cards/card-back.svg" alt="back" className="card dealer-right" />
                     </div>
                 );
             } 
@@ -83,8 +83,8 @@ function Game(){
             newValue += rightCard.getValue();
             initialCards.push(
                 <div key={i} id={`n${i}`} className="card-pair">
-                    <img src={leftCard.getIcon()} alt="card" className="card left-card" />
-                    <img src={rightCard.getIcon()} alt="card" className="card right-card" />
+                    <img src={leftCard.getIcon()} alt={leftCard.getIcon()}  className="card left-card" />
+                    <img src={rightCard.getIcon()} alt={rightCard.getIcon()} className="card right-card" />
                 </div>
             );
         }
@@ -117,8 +117,8 @@ function Game(){
             if (i % 2 === 0) {
                 newDealerCard.push(
                     <div key={i} className="dealer-pair">
-                        <img src={card.getIcon()} alt="card" className="card dealer-left" />
-                        <img src="/src/cards/card-back.svg" alt="back" className="card dealer-right" />
+                        <img src={card.getIcon()} alt={card.getIcon()} className="card dealer-left" />
+                        <img src="/src/client/cards/card-back.svg" alt="back" className="card dealer-right" />
                     </div>
                 );
             } 
@@ -132,8 +132,8 @@ function Game(){
             newValue += rightCard.getValue();
             newCards.push(
                 <div key={i} id={`n${i}`} className="card-pair">
-                    <img src={leftCard.getIcon()} alt="card" className="card left-card" />
-                    <img src={rightCard.getIcon()} alt="card" className="card right-card" />
+                    <img src={leftCard.getIcon()} alt={leftCard.getIcon()}  className="card left-card" />
+                    <img src={rightCard.getIcon()} alt={rightCard.getIcon()} className="card right-card" />
                 </div>
             );
         }

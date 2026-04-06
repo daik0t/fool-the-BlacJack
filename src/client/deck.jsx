@@ -3,7 +3,7 @@ import React from "react";
 const getCardImagePath = (suit, rank) => {
     const suitLower = suit.toLowerCase();
     const rankLower = rank.toLowerCase();
-    return `/src/cards/card-${rankLower}-${suitLower}.svg`;
+    return `/src/client/cards/card-${rankLower}-${suitLower}.svg`;
 };
 
 class Card {
