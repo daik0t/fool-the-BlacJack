@@ -1,8 +1,8 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Decks } from "./deck.jsx";
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./game.css";
+import { useAuth } from './context/AuthContext';
 
 const playerFactor = {
     1 : 1.0,
@@ -52,6 +52,8 @@ function Game(){
     const [points, setPoints] = useState(0);
     const [startTime, setStart] = useState(Date.now());
     const [streak, setStreak] = useState(0)
+
+    const { token } = useAuth();
     
     useEffect(() => {
 
@@ -94,6 +96,20 @@ function Game(){
         setValue(newValue);
         
     }, [deckNum, playerNum]);
+
+    useEffect(() => {
+        if (lives === 0 && points > 0) {
+          fetch('http://localhost:3000/api/scores', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ score: points })
+          }).catch(err => console.error('Failed to save score', err));
+        }
+      }, [lives, points, token]);
+
 
     const getCard = () => {
         let card = deck.showCard();
@@ -190,6 +206,7 @@ function Game(){
     if (!deck || !dealerCard) return <div>Загрузка...</div>;
 
     if (lives === 0) {
+        
         return (
         <div className="again">
             <button onClick={toPlay}>Try Again</button>
