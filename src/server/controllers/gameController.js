@@ -1,4 +1,4 @@
-import pool from '../config/db.js';   // обратите внимание на расширение .js
+import pool from '../config/db.js';
 
 export const getScores = async (req, res) => {
   try {
