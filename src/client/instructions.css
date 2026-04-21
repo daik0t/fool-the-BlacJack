@@ -1,0 +1,78 @@
+.instructions-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    font-family: Menlo, 'Roboto Mono', monospace;
+    color: #000000;
+    background-color: transparent; /* фон будет чёрный из Layout, но текст чёрный – убедитесь, что контейнер имеет светлый фон или тень */
+    /* Чтобы чёрный текст был читаем на чёрном фоне Layout, добавим полупрозрачный фон */
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Заголовки секций – кликабельны */
+  .section h2 {
+    cursor: pointer;
+    user-select: none;
+    font-size: 1.8rem;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+  }
+  
+  .section h2:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Содержимое секции */
+  .section-content {
+    padding: 10px 20px;
+    line-height: 1.5;
+  }
+  
+  .section-content p, 
+  .section-content li {
+    font-size: 1rem;
+  }
+  
+  .section-content h3 {
+    font-size: 1.3rem;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+  }
+  
+  .section-content h4 {
+    font-size: 1.1rem;
+    margin-top: 0.8em;
+    margin-bottom: 0.3em;
+  }
+  
+  /* Картинки – по центру, на отдельной строке */
+  .instruction-image {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Списки */
+  .section-content ul, .section-content ol {
+    margin: 10px 0 10px 30px;
+  }
+  
+  /* Для мобильных устройств */
+  @media (max-width: 768px) {
+    .instructions-container {
+      padding: 15px 20px;
+    }
+    .section h2 {
+      font-size: 1.4rem;
+    }
+  }

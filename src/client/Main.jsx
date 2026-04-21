@@ -28,9 +28,9 @@ function Main(){
         <div className="group-btn">
             <main>
                 <ul type="None">
-                    <li><button onClick={toPlay}>Play</button></li>
-                    <li><button onClick={toInstructions}>How to play</button></li>
-                    <li><button onClick={toLeaderboard}>Leaderboard</button></li>
+                    <li><button className="ui-btn" onClick={toPlay}><span>Play</span></button></li>
+                    <li><button className="ui-btn" onClick={toInstructions}><span>How to play</span></button></li>
+                    <li><button className="ui-btn" onClick={toLeaderboard}><span>Leaderboard</span></button></li>
                 </ul>
             </main>
         </div>

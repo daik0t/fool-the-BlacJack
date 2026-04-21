@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import "./leaderboard.css";
 
-function Leaderboard(){
+function Leaderboard() {
   const [scores, setScores] = useState([]);
   const [period, setPeriod] = useState("all");
   const [loading, setLoading] = useState(false);
@@ -22,17 +23,48 @@ function Leaderboard(){
     fetchScores();
   }, [period]);
 
+  const handlePeriodChange = (e) => {
+    setPeriod(e.target.value);
+  };
+
   return (
-    <div>
+    <div className="leaderboard-container">
       <h2>Leaderboard</h2>
-      <div style={{ marginBottom: "20px" }}>
-        <button onClick={() => setPeriod("week")} style={{ marginRight: "10px" }}>
-          За неделю
-        </button>
-        <button onClick={() => setPeriod("month")} style={{ marginRight: "10px" }}>
-          За месяц
-        </button>
-        <button onClick={() => setPeriod("all")}>За всё время</button>
+
+      {/* Стилизованные radio-табы */}
+      <div className="tabs">
+        <input
+          type="radio"
+          name="period"
+          id="week"
+          value="week"
+          checked={period === "week"}
+          onChange={handlePeriodChange}
+          className="input"
+        />
+        <label htmlFor="week" className="label">За неделю</label>
+
+        <input
+          type="radio"
+          name="period"
+          id="month"
+          value="month"
+          checked={period === "month"}
+          onChange={handlePeriodChange}
+          className="input"
+        />
+        <label htmlFor="month" className="label">За месяц</label>
+
+        <input
+          type="radio"
+          name="period"
+          id="all"
+          value="all"
+          checked={period === "all"}
+          onChange={handlePeriodChange}
+          className="input"
+        />
+        <label htmlFor="all" className="label">За всё время</label>
       </div>
 
       {loading && <div>Загрузка...</div>}

@@ -1,63 +1,63 @@
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./play.css";
 
-var defaultPlayers;
-var defaultDecks;
-
 function Play(){
     const navigate = useNavigate();
-    const HandleSubmit = (e) => {        
+    const [playerNum, setPlayerNum] = useState(3);
+    const [deckNum, setDeckNum] = useState(3);
+    const handleSubmit = (e) => {
         e.preventDefault();
-
-        const form = e.target;
-        const formData = new FormData(form);
-
-        const formJson = Object.fromEntries(formData.entries());
-
-        const data = formJson;
-        
-        defaultDecks = data["deckNum"]
-        defaultPlayers = data["playerNum"]
-        navigate('../game', {state: {data}})
-      }
-    return (
+        const data = { playerNum, deckNum };
+        navigate("/game", { state: { data } });
+    };
+      return (
         <div>
-            <form method="post" onSubmit={HandleSubmit}>
-
-                <table className="inputs">
-                    <tbody>
-                        <tr>
-                            <td>
-                                Сколько Игроков&nbsp;
-                                <select name="playerNum" defaultValue={defaultPlayers}>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5 </option>
-                                </select>
-                            </td>
-                            <td >
-                                Сколько кололд&nbsp;
-                                <select name="deckNum" defaultValue={defaultDecks} >
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5 </option>
-                                </select>
-                            </td> 
-                        </tr>
-                    </tbody>
-                </table>
-
-                <main className="btn-start" align="center">
-                    <button type="submit">Start Game</button>
-                </main>
-
-            </form>
+          <form onSubmit={handleSubmit}>
+            <div className="radio-group-container">
+              <h3>Количество игроков</h3>
+              <div className="radio-group">
+                {[1, 2, 3, 4, 5].map((num) => (
+                  <label key={`player-${num}`} className="quantum-radio">
+                    <input
+                      type="radio"
+                      name="playerNum"
+                      value={num}
+                      checked={playerNum === num}
+                      onChange={() => setPlayerNum(num)}
+                    />
+                    <span className="radio-control"></span>
+                    <span className="radio-label">{num}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+    
+            <div className="radio-group-container">
+              <h3>Количество колод</h3>
+              <div className="radio-group">
+                {[1, 2, 3, 4, 5].map((num) => (
+                  <label key={`deck-${num}`} className="quantum-radio">
+                    <input
+                      type="radio"
+                      name="deckNum"
+                      value={num}
+                      checked={deckNum === num}
+                      onChange={() => setDeckNum(num)}
+                    />
+                    <span className="radio-control"></span>
+                    <span className="radio-label">{num}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+    
+            <div className="btn-start" align="center">
+              <button  className="ui-btn" type="submit"><span>Start Game</span></button>
+            </div>
+          </form>
         </div>
-    );
+      );
 }
 
 export default Play;

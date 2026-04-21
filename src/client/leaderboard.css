@@ -1,0 +1,155 @@
+/* Leaderboard.css */
+
+.leaderboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #000000;
+  font-family: "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue",
+    Helvetica, Arial, sans-serif, system-ui;
+}
+
+.leaderboard-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ---------- Tabs стили ---------- */
+.leaderboard-container {
+  --radius: 8px;
+  --border: 4px;
+  --height: 48px;
+  --speed: 0.25s;
+}
+
+.tabs {
+  height: var(--height);
+  display: grid;
+  grid-auto-flow: column;
+  background: hsl(0 0% 0%);
+  border-radius: var(--radius);
+  grid-auto-columns: 1fr;
+  position: relative;
+  border: var(--border) solid hsl(0 0% 0%);
+  margin-bottom: 30px;
+}
+
+.tabs {
+  --ease: linear(
+    0,
+    0.1641 3.52%,
+    0.311 7.18%,
+    0.4413 10.99%,
+    0.5553 14.96%,
+    0.6539 19.12%,
+    0.738 23.5%,
+    0.8086 28.15%,
+    0.8662 33.12%,
+    0.9078 37.92%,
+    0.9405 43.12%,
+    0.965 48.84%,
+    0.9821 55.28%,
+    0.992 61.97%,
+    0.9976 70.09%,
+    1
+  );
+}
+
+.tabs .input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Определяем количество вкладок (3) и активную позицию */
+.tabs:has(:checked:nth-of-type(1)) {
+  --active: 0;
+}
+.tabs:has(:checked:nth-of-type(2)) {
+  --active: 1;
+}
+.tabs:has(:checked:nth-of-type(3)) {
+  --active: 2;
+}
+
+.tabs {
+  --count: 3;
+}
+
+.tabs .label {
+  padding: 0 clamp(10px, 10px + 10px, 20px);
+  cursor: pointer;
+  text-align: center;
+  height: 100%;
+  display: grid;
+  border-radius: calc(var(--radius) - var(--border));
+  place-items: center;
+  transition: background, color;
+  transition-duration: 0.25s;
+  transition-timing-function: var(--ease, ease);
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+  color: white; /* по умолчанию белый */
+}
+
+/* Активная вкладка – чёрный текст */
+.input:checked + .label {
+  color: black;
+}
+
+.input:not(:checked) + .label:hover {
+  background: hsl(0 0% 20%);
+  color: white;
+}
+
+/* Слайдер (белый прямоугольник) */
+.tabs::after {
+  pointer-events: none;
+  content: "";
+  width: calc(100% / var(--count));
+  height: 100%;
+  background: white;
+  position: absolute;
+  border-radius: calc(var(--radius) - var(--border));
+  translate: calc(var(--active, 0) * 100%) 0;
+  transition: translate, outline-color;
+  transition-duration: var(--speed);
+  transition-timing-function: var(--ease, ease);
+  outline: 2px solid transparent;
+  z-index: 1;
+}
+
+.tabs:has(:focus-visible)::after {
+  outline-color: red;
+}
+
+/* Таблица */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #cfcfcf;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+th {
+  background: #cacaca;
+  font-weight: 600;
+}
+
+tr:hover {
+  background: rgba(109, 109, 109, 0.1);
+}

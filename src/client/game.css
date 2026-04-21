@@ -6,7 +6,7 @@
 .game {
     display: grid;
     align-items: center;
-    height: 80vh;
+    height: 65vh;
 }
 
 .dealer {
@@ -26,50 +26,49 @@
 
 .again button {
     width: 15vw;
-    height: 5vh;
 }
 
-.back-btn {
+#back-btn {
     position: fixed;
     margin-top: -52;
     margin-left: 10;
 }
 
 .card {
-    width: 10vw;
-    height: 25vh;
+    width: 9vw;
+    height: 20vh;
 }
 
 #n0 {
     position: fixed;
-    top: 65vh;
+    top: 60vh;
     left: 40vw;
 }
 
 #n1 {
     position: fixed;
-    top: 60vh;
+    top: 55vh;
     left: 20vw;
     transform: rotate(10deg);
 }
 
 #n2 {
     position: fixed;
-    top: 60vh;
+    top: 55vh;
     left: 60vw;
     transform: rotate(-10deg);
 }
 
 #n3 {
     position: fixed;
-    top: 50vh;
+    top: 45vh;
     left: 2vw;
     transform: rotate(30deg);
 }
 
 #n4 {
     position: fixed;
-    top: 50vh;
+    top: 45vh;
     left: 78vw;
     transform: rotate(-30deg);
 }
@@ -107,4 +106,113 @@
     position: relative;
     right: 10px;
     z-index: 0;
+}
+/* ... существующие стили ... */
+
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.lives-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.heart-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.score-container {
+    text-align: center;
+    font-family: Menlo, 'Roboto Mono', monospace;
+    font-weight: 600;
+    color: black;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.score-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+}
+/* Стили для поля ввода счёта */
+.search-bar {
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #303030;
+    border-bottom: 2px solid #9a9a9a;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #2d2d2d;
+    color: white;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+    font-family: Menlo, 'Roboto Mono', monospace;
+    font-size: 1rem;
+}
+
+.search-bar::placeholder {
+    color: #9a9a9a;
+}
+
+.search-bar:hover {
+    background-color: #313131;
+}
+
+.search-bar:active,
+.search-bar:focus {
+    background-color: #1e1f20;
+    border: 1px solid #2d2d2d;
+    border-bottom: 2px solid #4cc2ff;
+}
+
+/* Убираем стрелки для type="number" в Chrome/Safari */
+.search-bar::-webkit-inner-spin-button,
+.search-bar::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Стили для экрана Game Over */
+.game-over-container {
+    width: 100%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-over-card {
+    border-radius: 20px;
+    text-align: center;
+    min-width: 300px;
+}
+
+.final-score {
+    margin-bottom: 30px;
+}
+
+.final-score-text {
+    font-family: Menlo, 'Roboto Mono', monospace;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px 25px;
+    border-radius: 40px;
+    display: inline-block;
+    letter-spacing: 1px;
 }
