@@ -201,6 +201,6 @@ input:checked ~ .card-side::after {
 
 .auth-error {
   color: red;
-  margin-top: 20px;
+  margin-top: 60px;
   text-align: center;
 }

@@ -256,6 +256,9 @@ function Game(){
         );
     }
 
+    console.log(value);
+    
+
     return (
         <div>
             <main>

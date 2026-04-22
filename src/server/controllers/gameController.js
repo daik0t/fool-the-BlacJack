@@ -23,7 +23,7 @@ export const getScores = async (req, res) => {
       JOIN blackjack.users u ON s.user_id = u.id
       ${dateFilter}
       ORDER BY s.score DESC
-      LIMIT 50
+      LIMIT 10
     `;
     const result = await pool.query(query, params);
     res.status(200).json(result.rows);
