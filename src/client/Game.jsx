@@ -5,7 +5,7 @@ import "./game.css";
 import { useAuth } from './context/AuthContext';
 import TextType from './components/TextType'; // импорт анимированного текста
 import heartIcon from './components/Heart.svg';      // путь к обычному сердцу
-import witheredHeartIcon from './components/Withered_heart.svg'; // путь к увядшему сердцу
+import witheredHeartIcon from './components/Withered_Heart.svg'; // путь к увядшему сердцу
 
 const playerFactor = {
     1 : 1.0,
