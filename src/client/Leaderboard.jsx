@@ -6,7 +6,7 @@ function Leaderboard() {
   const [period, setPeriod] = useState("all");
   const [loading, setLoading] = useState(false);
 
-  const API_URL = import.meta.env.API_URL;
+  const API_URL = process.env.API_URL;
 
   useEffect(() => {
     const fetchScores = async () => {

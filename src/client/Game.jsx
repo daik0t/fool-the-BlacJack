@@ -42,7 +42,7 @@ const streakFactor = {
 
 const basePoints = 100;
 
-const API_URL = import.meta.env.API_URL;
+const API_URL = process.env.API_URL;
 
 function Game(){
     const location = useLocation();    
