@@ -6,11 +6,13 @@ function Leaderboard() {
   const [period, setPeriod] = useState("all");
   const [loading, setLoading] = useState(false);
 
+  const URL = import.meta.env.API_URL;
+
   useEffect(() => {
     const fetchScores = async () => {
       setLoading(true);
       try {
-        const url = `http://localhost:8080/api/scores${period !== "all" ? `?period=${period}` : ""}`;
+        const url = `http://${URL}/api/scores${period !== "all" ? `?period=${period}` : ""}`;
         const res = await fetch(url);
         const data = await res.json();
         setScores(data);

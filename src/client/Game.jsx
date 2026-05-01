@@ -58,6 +58,8 @@ function Game(){
     const [animateScore, setAnimateScore] = useState(false); // триггер анимации счёта
 
     const { token } = useAuth();
+
+    const URL = import.meta.env.API_URL;
     
     // Реф для принудительного перезапуска анимации TextType
     const scoreKeyRef = useRef(0);
@@ -104,7 +106,7 @@ function Game(){
 
     useEffect(() => {
         if (lives === 0 && points > 0) {
-            fetch(`http://localhost:8080/api/scores`, {
+            fetch(`http://${URL}/api/scores`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
