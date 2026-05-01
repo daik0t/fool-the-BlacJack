@@ -13,7 +13,7 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 ViteExpress.listen(app, PORT, () => {
   console.log(`Server running on port ${PORT}`);
