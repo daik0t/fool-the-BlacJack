@@ -2,8 +2,6 @@ import Main from './Main';
 import Play from './Play';
 import Instructions from './Instructions';
 import Leaderboard from './Leaderboard';
-import Signup from "./SignUp";
-import Login from "./Login";
 import AuthFlipCard from './components/AuthFlipCard';
 import Game from './Game';
 import './app.css'
