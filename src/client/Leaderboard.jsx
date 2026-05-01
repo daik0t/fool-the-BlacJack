@@ -12,7 +12,7 @@ function Leaderboard() {
     const fetchScores = async () => {
       setLoading(true);
       try {
-        const url = `http://${API_URL}/api/scores${period !== "all" ? `?period=${period}` : ""}`;
+        const url = `https://${API_URL}/api/scores${period !== "all" ? `?period=${period}` : ""}`;
         const res = await fetch(url);
         const data = await res.json();
         setScores(data);

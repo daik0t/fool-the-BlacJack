@@ -106,7 +106,7 @@ function Game(){
 
     useEffect(() => {
         if (lives === 0 && points > 0) {
-            fetch(`http://${API_URL}/api/scores`, {
+            fetch(`https://${API_URL}/api/scores`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
