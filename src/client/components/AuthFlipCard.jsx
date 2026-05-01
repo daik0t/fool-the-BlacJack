@@ -20,7 +20,7 @@ const AuthFlipCard = () => {
     e.preventDefault();
     setError("");
     try {
-      const res = await fetch(`http://${URL}/api/login`, {
+      const res = await fetch(`/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: loginEmail, password: loginPassword }),
@@ -38,7 +38,7 @@ const AuthFlipCard = () => {
     e.preventDefault();
     setError("");
     try {
-      const res = await fetch(`http://${URL}/api/register`, {
+      const res = await fetch(`/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
