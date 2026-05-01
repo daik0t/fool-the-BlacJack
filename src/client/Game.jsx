@@ -42,6 +42,8 @@ const streakFactor = {
 
 const basePoints = 100;
 
+const API_URL = import.meta.env.API_URL;
+
 function Game(){
     const location = useLocation();    
     const navigate = useNavigate();
@@ -104,7 +106,7 @@ function Game(){
 
     useEffect(() => {
         if (lives === 0 && points > 0) {
-            fetch('http://localhost:3000/api/scores', {
+            fetch(`http://${API_URL}/api/scores`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

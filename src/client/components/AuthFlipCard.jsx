@@ -14,11 +14,13 @@ const AuthFlipCard = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
+  const API_URL = import.meta.env.API_URL;
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      const res = await fetch("http://localhost:3000/api/login", {
+      const res = await fetch(`http://${API_URL}/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: loginEmail, password: loginPassword }),
@@ -36,7 +38,7 @@ const AuthFlipCard = () => {
     e.preventDefault();
     setError("");
     try {
-      const res = await fetch("http://localhost:3000/api/register", {
+      const res = await fetch(`http://${API_URL}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
