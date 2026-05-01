@@ -58,8 +58,6 @@ function Game(){
     const [animateScore, setAnimateScore] = useState(false); // триггер анимации счёта
 
     const { token } = useAuth();
-
-    const URL = import.meta.env.API_URL;
     
     // Реф для принудительного перезапуска анимации TextType
     const scoreKeyRef = useRef(0);
@@ -79,7 +77,7 @@ function Game(){
                 initialDealerCards.push(
                     <div key={i} className="dealer-pair">
                         <img src={card.getIcon()} alt={card.getIcon()} className="card dealer-left" />
-                        <img src="/src/client/cards/card-back.svg" alt="back" className="card dealer-right" />
+                        <img src="/cards/card-back.svg" alt="back" className="card dealer-right" />
                     </div>
                 );
             } 
@@ -147,7 +145,7 @@ function Game(){
                 newDealerCard.push(
                     <div key={i} className="dealer-pair">
                         <img src={card.getIcon()} alt={card.getIcon()} className="card dealer-left" />
-                        <img src="/src/client/cards/card-back.svg" alt="back" className="card dealer-right" />
+                        <img src="/cards/card-back.svg" alt="back" className="card dealer-right" />
                     </div>
                 );
             } 

@@ -14,8 +14,6 @@ const AuthFlipCard = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const URL = import.meta.env.API_URL;
-
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
